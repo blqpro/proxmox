@@ -1,0 +1,20 @@
+[Unit]
+Description=Wireguard VPN for proxmox
+After=network-online.target
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+
+        #  ! change dirrectory according to OS (which wg-quick to know where its located) !
+
+ExecStart=/usr/bin/wg-quick up proxtun
+ExecStop=/usr/bin/wg-quick down proxtun
+Restart=on-failure
+
+        # Configures the time to wait before service is stopped forcefully.
+
+TimeoutStopSec=300
+
+[Install]
+WantedBy=multi-user.target

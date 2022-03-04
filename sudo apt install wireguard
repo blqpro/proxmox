@@ -1,0 +1,30 @@
+#Installer les packages a avoir 	
+	apt install sudo
+	sudo apt install fbi
+	sudo apt install wireguard
+
+
+#copier le script wireguard.sh dans home de root (ou de l'user en sudo)
+	cp wireguard.sh /home
+#Donner les droit d'execution 
+	chmod +x wireguard.sh
+#Executer le struc en prcisent (nom du vpn / l'ip public de la box / le port / l'utilisateur (wireguard))
+	./wireguard.sh proxtun 83.X.X.X 51194 1 ens18
+
+#copier le client_1.conf sur le client wireguard( mac/windows/IOS... ) (Attention la config es valable seulement pour 1 client a la fois
+#mais peut être importer sur plusieur apareil a condition qu'il ne sont pas connecter en même temps ! )
+#Configurer sur le routeur les port ouvert d'entrée et sortie ici 51194
+
+#Importer la config dans client wiregard (ont peut copier coller le CAT/NANO depuis SSH vers la nouvelle config sur le client directement)
+
+#Lancé l'interface VPN
+	sudo wg-quick up proxtun
+	sudo wg show
+
+#Pour créer un QR CODE pour l'accès sur mobile utiliser FBI 
+	cat client_1.conf | qrencode -o qr.png
+
+#Pour lancé l'interface VPN 
+	sudo wg-quick up proxtun
+#Pour eteindre l'enterface VPN 
+	sudo wg-quick down proxtun
