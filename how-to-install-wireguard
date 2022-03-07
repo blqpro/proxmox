@@ -1,4 +1,4 @@
-#Installer les packages a avoir 	
+#Installer les packages a avoir 				WILL BE IN ENGLISH SOON
 	apt install sudo
 	sudo apt install fbi
 	sudo apt install wireguard
